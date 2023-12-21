@@ -55,23 +55,23 @@ Contract Parameter: 'contracts/demo/CoiniToken.sol:CoiniToken'
 
   
 
-**Deploy Factory Smart Contract**
+**Deploy Token Factory**
 
 ```Example```
 
 ```
-npx hardhat --network mumbai deployContract FactoryERC20Token
+npx hardhat --network mumbai deployContract ERC20TokenFactory
 ```
 
 ```
-npx hardhat --network mumbai deployContract FactoryERC721Token
+npx hardhat --network mumbai deployContract ERC721TokenFactory
 ```
   
 
-## Testing FactoryERC20Token:
+## Testing ERC20TokenFactory:
 
 ```Example```
 
 ```
-npx hardhat test .\test\testFactoryERC20.js
+npx hardhat test .\test\testERC20TokenFactory.js
 ```
