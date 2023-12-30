@@ -34,6 +34,11 @@ contract ERC20Token is ERC20, ERC20Burnable, ERC20Pausable, AccessControl {
         _mint(to, amount);
     }
 
+    function transfer(address from, address to, uint256 value) public onlyRole(DEFAULT_ADMIN_ROLE) returns (bool) {
+        _transfer(from, to, value);
+        return true;
+    }
+
     // The following functions are overrides required by Solidity.
 
     function _update(

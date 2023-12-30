@@ -28,16 +28,20 @@ contract ERC20TokenFactory {
         return erc20TokenArray;
     }
 
-    function callERC20TokenBalanceOf(address token, address account) public view returns (uint256) {
+    function callBalanceOf(address token, address account) public view returns (uint256) {
         return ERC20Token(token).balanceOf(account);
     }
 
-    function callERC20TokenMint(address token, address to, uint256 amount) public {
+    function callMint(address token, address to, uint256 amount) public {
         ERC20Token(token).mint(to, amount);
     }
 
-    function callERC20TokenTransfer(address token, address to, uint256 value) public returns (bool){
+    function callTransferFromFactory(address token, address to, uint256 value) public returns (bool){
         return ERC20Token(token).transfer(to, value);
+    }
+
+    function callTransfer(address token, address from, address to, uint256 value) public returns (bool){
+        return ERC20Token(token).transfer(from, to, value);
     }
 
     //source: https://ethereum.stackexchange.com/questions/103508/is-there-a-way-to-call-a-dynamic-function-name-in-solidity

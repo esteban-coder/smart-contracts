@@ -6,8 +6,9 @@ import "../base/ERC721Token.sol";
 contract ERC721TokenFactory {
     ERC721Token[] public erc721TokenArray;
     uint256 public erc721TokenCount;
-    event NewERC721Token(address erc721TokenAddress);
-    event NewNftMinted(uint256 contractIndex, address owner, uint256 tokenId);
+
+    event NewERC721Token(address erc721TokenAddress, uint256 index);
+    event NewNftMinted(address erc721TokenAddress, address owner, uint256 tokenId);
 
     function createNewERC721Token(
         string memory name,
@@ -17,7 +18,7 @@ contract ERC721TokenFactory {
         ERC721Token erc721Token = new ERC721Token(name, symbol, baseURI);
         erc721TokenArray.push(erc721Token);
         erc721TokenCount++;
-        emit NewERC721Token(address(erc721Token));
+        emit NewERC721Token(address(erc721Token), erc721TokenArray.length - 1);
         return address(erc721Token);
     }
 
@@ -28,13 +29,21 @@ contract ERC721TokenFactory {
         return erc721TokenArray;
     }
 
-    function callSafeMint(uint256 _index, address _to, uint256 _tokenId) public {
-        ERC721Token(address(erc721TokenArray[_index])).safeMint(_to, _tokenId);
-        emit NewNftMinted(_index, _to, _tokenId);
+    function callOwnerOf(address token, uint256 tokenId) public view returns (address) {
+        return ERC721Token(token).ownerOf(tokenId);
     }
 
-    function callOwnerOf(uint256 _index, uint256 _tokenId) public view returns (address) {
-        return ERC721Token(address(erc721TokenArray[_index])).ownerOf(_tokenId);
+    function callSafeMint(address token, address to, uint256 tokenId, string memory uri) public {
+        ERC721Token(token).safeMint(to, tokenId, uri);
+        emit NewNftMinted(token, to, tokenId);
+    }
+
+    function callSafeTransfer(address token, address from, address to, uint256 tokenId) public {
+        ERC721Token(token).safeTransfer(from, to, tokenId);
+    }
+
+    function callBurn(address token, address from, uint256 tokenId) public {
+        ERC721Token(token).burn(from, tokenId);
     }
 
 }
