@@ -68,10 +68,14 @@ npx hardhat --network mumbai deployContract ERC721TokenFactory
 ```
   
 
-## Testing ERC20TokenFactory:
+## Testing Token Factories:
 
-```Example```
+```Examples```
 
 ```
 npx hardhat test .\test\testERC20TokenFactory.js
+```
+
+```
+npx hardhat test .\test\testERC721TokenFactory.js
 ```
