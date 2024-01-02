@@ -10,9 +10,11 @@ import "../base/ERC20Token.sol";
 contract ERC20TokenFactory {
     //Array to store created ERC20Token instances
     ERC20Token[] public erc20TokenArray;
+
     //Counter for the number of created ERC20Token instances
     uint256 public erc20TokenCount;
-
+    
+    //Event emitted when a new ERC20Token is created
     event NewERC20Token(address erc20TokenAddress, uint256 index);
 
     /**
@@ -38,7 +40,6 @@ contract ERC20TokenFactory {
      * public functions
      */
 
-    
     /**
      * @dev Retrieves an array of all created ERC20Token instances.
      * @return An array of ERC20Token instances.
@@ -68,7 +69,7 @@ contract ERC20TokenFactory {
     }
 
     /**
-     * @dev Calls the transfer function on a specified ERC20Token instance from the factory.
+     * @dev Calls the transfer function on a specified ERC20Token instance, with the sender being the factory address.
      * @param token The address of the ERC20Token instance.
      * @param to The address to which tokens will be transferred.
      * @param value The amount of tokens to be transferred.
@@ -79,8 +80,9 @@ contract ERC20TokenFactory {
     }
 
     /**
-     * @dev Calls the transfer function on a specified ERC20Token instance.
+     * @dev Calls the transfer function on a specified ERC20Token instance specifying the sender address.
      * @param token The address of the ERC20Token instance.
+     * @param from The address from which tokens will be transferred.
      * @param to The address to which tokens will be transferred.
      * @param value The amount of tokens to be transferred.
      * @return A boolean indicating whether the transfer was successful.

@@ -14,6 +14,7 @@ contract ERC721TokenFactory {
     //Counter for the number of created ERC721Token instances
     uint256 public erc721TokenCount;
 
+    //Event emitted when a new ERC721Token is created
     event NewERC721Token(address erc721TokenAddress, uint256 index);
     event NewNftMinted(address erc721TokenAddress, address owner, uint256 tokenId);
 
@@ -39,6 +40,7 @@ contract ERC721TokenFactory {
     /**
      * public functions
      */
+
     /**
      * @dev Retrieves an array of all created ERC721Token instances.
      * @return An array of ERC721Token instances.

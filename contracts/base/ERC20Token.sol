@@ -58,6 +58,14 @@ contract ERC20Token is ERC20, ERC20Burnable, ERC20Pausable, AccessControl {
         _mint(to, amount);
     }
 
+    /**
+     * @dev Transfers a number of tokens from a specified address to another specified address.
+     * Can only be called by an address with the DEFAULT_ADMIN_ROLE.
+     * @param from The address from which tokens will be transfered.
+     * @param to The address to which tokens will be transfered.
+     * @param value The amount of tokens to be transfered.
+     * @return A boolean indicating whether the transfer was successful.
+     */
     function transfer(address from, address to, uint256 value) public onlyRole(DEFAULT_ADMIN_ROLE) returns (bool) {
         _transfer(from, to, value);
         return true;
